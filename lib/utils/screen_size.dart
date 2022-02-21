@@ -1,0 +1,1 @@
+const screenWidthSize = 800;
