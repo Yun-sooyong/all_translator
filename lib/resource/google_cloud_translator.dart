@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 // ANCHOR get google_cloud_translator method
+/// TODO target 언어를 받을 변수 생성, mapping
+/// TODO try catch 사용
 Future<void> getGoogleTranslation(var text) async {
   var _url = 'https://translation.googleapis.com/language/translate/v2';
   const googleApiKey = 'AIzaSyChjWY1iNZbam8tPLEloVFs8umb-tMViqo';

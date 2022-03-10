@@ -1,5 +1,6 @@
 import 'package:all_translator/screens/home_screen.dart';
 import 'package:all_translator/screens/splash_screen.dart';
+import 'package:all_translator/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -23,9 +24,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'All-translator',
         theme: ThemeData(
-            primarySwatch: Colors.blue,
-            appBarTheme: const AppBarTheme(
-                systemOverlayStyle: SystemUiOverlayStyle.light)),
+          primarySwatch: Colors.blue,
+          appBarTheme:
+              const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.light),
+        ).copyWith(scaffoldBackgroundColor: foregroundColor),
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {'/home': (context) => const HomeScreen()},

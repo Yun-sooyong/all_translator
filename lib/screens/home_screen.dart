@@ -1,11 +1,11 @@
 import 'package:all_translator/resource/google_cloud_translator.dart';
 import 'package:all_translator/utils/color.dart';
-import 'package:all_translator/utils/screen_size.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:all_translator/widgets/widgets.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// TODO 가능하면 provider 사용해보기
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -22,17 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
     _controller.dispose();
   }
 
+  List<bool> isSelected = [true, false, false];
+
   @override
   Widget build(BuildContext context) {
     //var screenHeight = MediaQuery.of(context).size.height;
     //var screenWidth = MediaQuery.of(context).size.width;
-    String inputText = '';
-
-    
-
-    // bool isGoogleT = isSelected[0];
-    // bool isPapagoT = isSelected[1];
-    // bool isKakaoT = isSelected[2];
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -47,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       backgroundColor: backgroundColor,
+      // SECTION body
       body: Container(
         alignment: Alignment.center,
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
@@ -59,10 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // ANCHOR textfield
             TextField(
               controller: _controller,
               keyboardType: TextInputType.multiline,
-              maxLines: 5,
+              maxLines: 10,
               decoration: const InputDecoration(
                 fillColor: Colors.white,
                 hintText: '내용을 입력하세요.',
@@ -82,33 +79,57 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 30),
             // FIXME make 3 buttons : google / papago / kakao
+            // ANCHOR toggleButtons
             ToggleButtons(
-              children: const [
-                Icon(Icons.ac_unit),
-                Icon(Icons.access_time_filled_outlined),
-                Icon(Icons.zoom_in_rounded)
+              children: [
+                CircleButton(
+                  //icon: Icon(Icons.abc_outlined),
+                  isSelected: isSelected[0],
+                  color: Colors.white,
+                ),
+                CircleButton(
+                  //icon: Icon(Icons.abc_outlined),
+                  isSelected: isSelected[1],
+                  color: Colors.green,
+                ),
+                CircleButton(
+                  isSelected: isSelected[2],
+                  color: Colors.amber,
+                ),
               ],
+              isSelected: isSelected,
+              selectedColor: Colors.red,
+              renderBorder: false,
+              fillColor: Colors.transparent,
               onPressed: (int index) {
+                final isOneSelected =
+                    isSelected.where((element) => element).length == 1;
+
+                if (isOneSelected && isSelected[index]) return;
+
                 setState(() {
-                  // isSelected[index] = !isSelected[index];
-                  // print('isSelected[$index] : ${isSelected[index]}');
+                  for (int buttonIndex = 0;
+                      buttonIndex < isSelected.length;
+                      buttonIndex++) {
+                    if (buttonIndex == index) {
+                      isSelected[buttonIndex] = !isSelected[index];
+                    }
+                  }
                 });
               },
-              isSelected: ,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 30),
             ElevatedButton(
-              onPressed: () {
-                setState(() async {
-                  inputText = _controller.text;
-                  await getGoogleTranslation(inputText);
-                });
+              onPressed: () async {
+                // TODO : 번역 도달 언어 선택기능 추가
+                await getGoogleTranslation(_controller.text);
               },
               child: const Text('번역하기'),
             )
           ],
         ),
       ),
+      // !SECTION
     );
   }
 }
