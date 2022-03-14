@@ -1,4 +1,5 @@
 import 'package:all_translator/resource/google_cloud_translator.dart';
+import 'package:all_translator/screens/result_screen.dart';
 import 'package:all_translator/utils/color.dart';
 import 'package:all_translator/widgets/widgets.dart';
 
@@ -37,14 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: backgroundColor,
         centerTitle: false,
         title: const Text(
-          '3 translator',
+          '내용 입력',
           style: TextStyle(color: Colors.white),
         ),
       ),
       backgroundColor: backgroundColor,
       // SECTION body
       body: Container(
-        alignment: Alignment.center,
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
         padding: const EdgeInsets.all(30),
         decoration: BoxDecoration(
@@ -78,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 30),
-            // FIXME make 3 buttons : google / papago / kakao
             // ANCHOR toggleButtons
             ToggleButtons(
               children: [
@@ -121,8 +120,23 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () async {
-                // TODO : 번역 도달 언어 선택기능 추가
-                await getGoogleTranslation(_controller.text);
+                // // TODO : 번역 도달 언어 선택기능 추가
+                String gText =
+                    await getGoogleTranslation(_controller.text, 'ko');
+                String pText = await getPapagoTranslation(
+                    text: _controller.text, source: 'en', target: 'ko');
+                String kText = await getKakaoTranslation(
+                    text: _controller.text, source: 'en', target: 'kr');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultScreen(
+                      googleText: gText,
+                      papagoText: pText,
+                      kakaoText: kText,
+                    ),
+                  ),
+                );
               },
               child: const Text('번역하기'),
             )

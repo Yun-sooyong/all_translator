@@ -1,4 +1,5 @@
 import 'package:all_translator/screens/home_screen.dart';
+import 'package:all_translator/screens/result_screen.dart';
 import 'package:all_translator/screens/splash_screen.dart';
 import 'package:all_translator/utils/color.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +30,6 @@ class MyApp extends StatelessWidget {
               const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.light),
         ).copyWith(scaffoldBackgroundColor: foregroundColor),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
-        routes: {'/home': (context) => const HomeScreen()},
         home: const HomeScreen()
         //const SplashScreen(),
         );

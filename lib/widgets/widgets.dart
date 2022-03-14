@@ -45,50 +45,38 @@ class _CircleButtonState extends State<CircleButton> {
   }
 }
 
-class CustomIcon extends StatefulWidget {
-  final Icon? icon;
-  final bool isSelected;
+class Textbox extends StatelessWidget {
+  final String text;
   final Color color;
 
-  const CustomIcon(
-      {Key? key,
-      this.color = Colors.green,
-      this.isSelected = false,
-      required this.icon})
+  const Textbox({Key? key, required this.text, this.color = Colors.white})
       : super(key: key);
 
   @override
-  State<CustomIcon> createState() => _CustomIconState();
-}
-
-class _CustomIconState extends State<CustomIcon> {
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 45,
-      height: 45,
-      decoration: BoxDecoration(
-        border: widget.isSelected
-            ? Border.all(
-                color: const Color(0xffC5CaE9),
-              )
-            : null,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: Center(
-        child: Container(
-          height: 32,
-          width: 32,
-          decoration: BoxDecoration(
-            color: widget.color,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(5),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleButton(color: color),
+          Flexible(
+            fit: FlexFit.tight,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              width: 600,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(12),
+                ),
+              ),
+              child: Text(text),
             ),
           ),
-          child: widget.icon,
-        ),
+        ],
       ),
     );
   }
