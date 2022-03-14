@@ -8,3 +8,4 @@
 /// 반응형 textfield => Flexible
 /// window app 
 /// double tap quit
+/// 외부를 터치하면 키보드 내려가게
