@@ -22,16 +22,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'All-translator',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          appBarTheme:
-              const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.light),
-        ).copyWith(scaffoldBackgroundColor: foregroundColor),
-        debugShowCheckedModeBanner: false,
-        home: const HomeScreen()
-        //const SplashScreen(),
-        );
+    return GestureDetector(
+      onTap: (() => FocusManager.instance.primaryFocus?.unfocus()),
+      child: MaterialApp(
+          title: 'All-translator',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            appBarTheme: const AppBarTheme(
+                systemOverlayStyle: SystemUiOverlayStyle.light),
+          ).copyWith(scaffoldBackgroundColor: foregroundColor),
+          debugShowCheckedModeBanner: false,
+          home: const HomeScreen()
+          //const SplashScreen(),
+          ),
+    );
   }
 }

@@ -1,12 +1,15 @@
-import 'package:all_translator/resource/google_cloud_translator.dart';
+import 'package:all_translator/resource/translator_methods.dart';
 import 'package:all_translator/screens/result_screen.dart';
 import 'package:all_translator/utils/color.dart';
-import 'package:all_translator/widgets/widgets.dart';
+import 'package:all_translator/utils/utils.dart';
+import 'package:all_translator/widgets/circle_button.dart';
+import 'package:all_translator/widgets/dialog.dart';
+import 'package:all_translator/widgets/textfield.dart';
+import 'package:all_translator/widgets/toggle_button.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// TODO 가능하면 provider 사용해보기
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -30,6 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
     //var screenHeight = MediaQuery.of(context).size.height;
     //var screenWidth = MediaQuery.of(context).size.width;
 
+    String gText = '';
+    String pText = '';
+    String kText = '';
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -38,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: backgroundColor,
         centerTitle: false,
         title: const Text(
-          '내용 입력',
+          '번역기',
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -56,87 +63,56 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // ANCHOR textfield
-            TextField(
-              controller: _controller,
-              keyboardType: TextInputType.multiline,
-              maxLines: 10,
-              decoration: const InputDecoration(
-                fillColor: Colors.white,
-                hintText: '내용을 입력하세요.',
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1,
-                    color: Colors.blueGrey,
+            Textfield(controller: _controller),
+
+            // ANCHOR text field clear button
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                child: const Text(
+                  '지우기',
+                  style: TextStyle(
+                    color: Colors.black54,
                   ),
                 ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1,
-                    color: Colors.blueGrey,
-                  ),
-                ),
+                onPressed: () => _controller.text = '',
+                style: TextButton.styleFrom(),
               ),
             ),
             const SizedBox(height: 30),
+
             // ANCHOR toggleButtons
-            ToggleButtons(
-              children: [
-                CircleButton(
-                  //icon: Icon(Icons.abc_outlined),
-                  isSelected: isSelected[0],
-                  color: Colors.white,
-                ),
-                CircleButton(
-                  //icon: Icon(Icons.abc_outlined),
-                  isSelected: isSelected[1],
-                  color: Colors.green,
-                ),
-                CircleButton(
-                  isSelected: isSelected[2],
-                  color: Colors.amber,
-                ),
-              ],
-              isSelected: isSelected,
-              selectedColor: Colors.red,
-              renderBorder: false,
-              fillColor: Colors.transparent,
-              onPressed: (int index) {
-                final isOneSelected =
-                    isSelected.where((element) => element).length == 1;
-
-                if (isOneSelected && isSelected[index]) return;
-
-                setState(() {
-                  for (int buttonIndex = 0;
-                      buttonIndex < isSelected.length;
-                      buttonIndex++) {
-                    if (buttonIndex == index) {
-                      isSelected[buttonIndex] = !isSelected[index];
-                    }
-                  }
-                });
-              },
-            ),
+            CustomToggle(list: isSelected),
             const SizedBox(height: 30),
+            // ANCHOR run button
+            // TODO toggle button 에 선택된 번역기만 작동 하게 함
             ElevatedButton(
+              // _controller.text.length < 2 => alter
+              // countOccurrencesUsingWhereMethod < 1 => alter
               onPressed: () async {
-                // // TODO : 번역 도달 언어 선택기능 추가
-                String gText =
-                    await getGoogleTranslation(_controller.text, 'ko');
-                String pText = await getPapagoTranslation(
-                    text: _controller.text, source: 'en', target: 'ko');
-                String kText = await getKakaoTranslation(
-                    text: _controller.text, source: 'en', target: 'kr');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ResultScreen(
-                      googleText: gText,
-                      papagoText: pText,
-                      kakaoText: kText,
-                    ),
-                  ),
-                );
+                // textfield가 비었거나 한글자만 있을 때 or toggle button 이 하나도 선택되지 않았을 때
+                _controller.text.length < 2 ||
+                        countOccurrencesUsingWhereMethod(isSelected, true) == 0
+                    ? showValueDialog(context, '번역할 내용을 입력해주세요')
+                    : {
+                        gText =
+                            await getGoogleTranslation(_controller.text, 'ko'),
+                        pText = await getPapagoTranslation(
+                            text: _controller.text, source: 'en', target: 'ko'),
+                        kText = await getKakaoTranslation(
+                            text: _controller.text, source: 'en', target: 'kr'),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResultScreen(
+                              list: isSelected,
+                              googleText: gText,
+                              papagoText: pText,
+                              kakaoText: kText,
+                            ),
+                          ),
+                        )
+                      };
               },
               child: const Text('번역하기'),
             )
