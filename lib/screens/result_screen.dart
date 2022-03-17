@@ -11,7 +11,7 @@ class ResultScreen extends StatelessWidget {
   final String? googleText;
   final String? papagoText;
   final String? kakaoText;
-  final List list;
+  final List isSelected;
 
   const ResultScreen({
     Key? key,
@@ -21,7 +21,7 @@ class ResultScreen extends StatelessWidget {
     this.googleText,
     this.papagoText,
     this.kakaoText,
-    required this.list,
+    required this.isSelected,
   }) : super(key: key);
 
   @override
@@ -42,15 +42,17 @@ class ResultScreen extends StatelessWidget {
         // TODO Column에서 Listview 로 변경 itemcount 는 items 를 사용
         child: Column(
           children: [
-            Textbox(text: googleText!),
-            Textbox(
-              text: papagoText!,
-              color: Colors.green,
-            ),
-            Textbox(
-              text: kakaoText!,
-              color: Colors.amber,
-            ),
+            if (isSelected[0]) Textbox(text: googleText!),
+            if (isSelected[1])
+              Textbox(
+                text: papagoText!,
+                color: Colors.green,
+              ),
+            if (isSelected[2])
+              Textbox(
+                text: kakaoText!,
+                color: Colors.amber,
+              ),
           ],
         ),
       ),
