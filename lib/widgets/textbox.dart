@@ -4,8 +4,10 @@ import 'circle_button.dart';
 class Textbox extends StatelessWidget {
   final String text;
   final Color color;
+  final AssetImage? image;
 
-  const Textbox({Key? key, required this.text, this.color = Colors.white})
+  const Textbox(
+      {Key? key, this.image, required this.text, this.color = Colors.white})
       : super(key: key);
 
   @override
@@ -16,7 +18,10 @@ class Textbox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleButton(color: color),
+          CircleButton(
+            color: color,
+            image: image!,
+          ),
           Flexible(
             fit: FlexFit.tight,
             child: Container(

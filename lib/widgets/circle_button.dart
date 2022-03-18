@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 class CircleButton extends StatefulWidget {
   final bool isSelected;
   final Color color;
-  final ImageProvider? image;
-  //final Icon icon;
+  final AssetImage image;
 
   const CircleButton({
     Key? key,
     this.isSelected = false,
     required this.color,
-    this.image,
+    required this.image,
     //required this.icon
   }) : super(key: key);
 
@@ -34,10 +33,21 @@ class _CircleButtonState extends State<CircleButton> {
           Radius.circular(45),
         ),
       ),
-      child: CircleAvatar(
-        backgroundColor: widget.color,
-        backgroundImage: widget.image,
-        //child: widget.icon,
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.all(9),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              scale: 0.4,
+              fit: BoxFit.fill,
+              image: widget.image,
+            ),
+            color: widget.color,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(45),
+            ),
+          ),
+        ),
       ),
     );
   }

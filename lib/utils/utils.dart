@@ -12,7 +12,8 @@ void showToast(String message) {
 // ANCHOR count list element
 // https://coflutter.com/dart-count-the-occurrence-of-an-element-in-a-list/
 int countOccurrencesUsingWhereMethod(List<dynamic> list, bool element) {
-  if (list == null || list.isEmpty) {
+  // if (list == null || list.isEmpty)
+  if (list.isEmpty) {
     return 0;
   }
 

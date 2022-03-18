@@ -67,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // ANCHOR textfield
+              // TODO Container Column 으로 Textfield위에 언어선택 기능 추가, 외곽선은 Container로
               Textfield(controller: _controller),
 
               // ANCHOR text field clear button
@@ -98,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _controller.text.length < 2 ||
                           countOccurrencesUsingWhereMethod(isSelected, true) ==
                               0
-                      ? showValueDialog(context, '번역할 내용을 입력해주세요')
+                      ? showValueDialog(context)
                       : {
                           gText = await getGoogleTranslation(
                               _controller.text, 'ko'),

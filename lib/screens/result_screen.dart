@@ -5,9 +5,6 @@ import 'package:all_translator/utils/color.dart';
 import 'package:all_translator/widgets/textbox.dart';
 
 class ResultScreen extends StatelessWidget {
-  //final bool isGoogle;
-  //final bool isPapago;
-  //final bool isKakao;
   final String? googleText;
   final String? papagoText;
   final String? kakaoText;
@@ -15,9 +12,6 @@ class ResultScreen extends StatelessWidget {
 
   const ResultScreen({
     Key? key,
-    //required this.isGoogle,
-    //required this.isPapago,
-    //required this.isKakao
     this.googleText,
     this.papagoText,
     this.kakaoText,
@@ -39,19 +33,24 @@ class ResultScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        // TODO Column에서 Listview 로 변경 itemcount 는 items 를 사용
         child: Column(
           children: [
-            if (isSelected[0]) Textbox(text: googleText!),
+            if (isSelected[0])
+              Textbox(
+                text: googleText!,
+                image: googleLogo,
+              ),
             if (isSelected[1])
               Textbox(
                 text: papagoText!,
                 color: Colors.green,
+                image: papagoLogo,
               ),
             if (isSelected[2])
               Textbox(
                 text: kakaoText!,
                 color: Colors.amber,
+                image: kakaoLogo,
               ),
           ],
         ),

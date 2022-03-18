@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:all_translator/widgets/circle_button.dart';
+import 'package:all_translator/utils/color.dart';
 
 class CustomToggle extends StatefulWidget {
   final List<bool> list;
@@ -16,33 +17,31 @@ class _ToggleButtonsState extends State<CustomToggle> {
     return ToggleButtons(
       children: [
         CircleButton(
-          //icon: Icon(Icons.abc_outlined),
+          image: googleLogo,
           isSelected: widget.list[0],
-          color: Colors.white,
+          color: googleColor,
         ),
         CircleButton(
-          //icon: Icon(Icons.abc_outlined),
+          image: papagoLogo,
           isSelected: widget.list[1],
-          color: Colors.green,
+          color: papagoColor,
         ),
         CircleButton(
+          image: kakaoLogo,
           isSelected: widget.list[2],
-          color: Colors.amber,
+          color: kakaoColor,
         ),
       ],
       isSelected: widget.list,
-      selectedColor: Colors.red,
       renderBorder: false,
       fillColor: Colors.transparent,
       onPressed: (int index) {
-        final isOneSelected =
-            widget.list.where((element) => element).length == 1;
+        // NOTE 번역기가 한개이상 무조건 선택되게 함
+        // final isOneSelected =
+        //     widget.list.where((element) => element).length == 1;
 
-        if (isOneSelected && widget.list[index]) return;
+        // if (isOneSelected && widget.list[index]) return;
 
-        // 1. 무조건 하나 이상 선택 => 현재 사용중
-        // 2. 하나도 선택을 하지 않거나 여러개 선택가능
-        // 둘 중 하나를 선택 (2의 경우 번역하기 버튼에서 선택을 안했을때의 내용을 추가해줘야함(isSelect 가 모두 false 일때 추가))
         setState(
           () {
             for (int buttonIndex = 0;

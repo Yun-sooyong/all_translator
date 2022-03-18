@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-const foregroundColor = Color(0xffA1AAB2);
-const backgroundColor = Color(0xff23394E);
+// colors
+const Color foregroundColor = Color(0xffA1AAB2);
+const Color backgroundColor = Color(0xff23394E);
 
-// 필요한 컬러
-// 1. 폰트 컬러 
-// 2. 구글, 파파고, 카카오 공식 지정 색
-// 3. 
+Color fontColor = const Color(0xff000000).withOpacity(85);
+const Color kakaoColor = Color(0xffFEE500);
+const Color papagoColor = Color(0xff03C75A);
+const Color googleColor = Color(0xffFFFFFF);
 
-// const backgroundColor = Color(0xffA1AAB2);
-// const foregroundColor = Color(0xff23394E);
+// images
+AssetImage googleLogo = const AssetImage('lib/assets/google_logo.png');
+AssetImage papagoLogo = const AssetImage('lib/assets/naver_logo.png');
+AssetImage kakaoLogo = const AssetImage('lib/assets/kakao_logo.png');

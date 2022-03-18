@@ -1,8 +1,6 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'package:http/http.dart' as http;
 
 // ANCHOR get google_cloud_translator method
 /// TODO target 언어를 받을 변수 생성, mapping
