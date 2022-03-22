@@ -39,7 +39,6 @@ class _ToggleButtonsState extends State<CustomToggle> {
         // NOTE 번역기가 한개이상 무조건 선택되게 함
         // final isOneSelected =
         //     widget.list.where((element) => element).length == 1;
-
         // if (isOneSelected && widget.list[index]) return;
 
         setState(

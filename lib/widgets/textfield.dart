@@ -20,14 +20,12 @@ class _TextfieldState extends State<Textfield> {
         hintText: '내용을 입력하세요.',
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            width: 1,
-            color: Colors.blueGrey,
+            color: Colors.transparent,
           ),
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            width: 1,
-            color: Colors.blueGrey,
+            color: Colors.transparent,
           ),
         ),
       ),
