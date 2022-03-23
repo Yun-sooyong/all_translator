@@ -1,3 +1,4 @@
+import 'package:all_translator/utils/color.dart';
 import 'package:flutter/material.dart';
 
 class Textfield extends StatefulWidget {
@@ -23,7 +24,7 @@ class _TextfieldState extends State<Textfield> {
             color: Colors.transparent,
           ),
         ),
-        border: OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.transparent,
           ),

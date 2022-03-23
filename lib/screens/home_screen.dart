@@ -69,31 +69,41 @@ class _HomeScreenState extends State<HomeScreen> {
               // ANCHOR textfield
               // TODO Container Column 으로 Textfield위에 언어선택 기능 추가, 외곽선은 Container로
               Container(
-                  decoration: BoxDecoration(
-                    //borderRadius: BorderRadius.circular(25),
-                    border: Border.all(width: 1, color: Colors.blueGrey),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding:
-                            const EdgeInsets.only(top: 13, right: 13, left: 13),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            // TODO Text 위치를 dropdown menuu 로 변경
-                            Expanded(child: Center(child: Text('Start'))),
-                            Expanded(
-                                child: Icon(
-                                    Icons.keyboard_double_arrow_right_rounded)),
-                            Expanded(child: Center(child: Text('End')))
-                          ],
-                        ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(width: 1, color: Colors.blueGrey),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 50, vertical: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          // TODO Text 위치를 dropdown menuu 로 변경
+                          Expanded(
+                            child: Center(
+                              child: Text('언어감지'),
+                            ),
+                          ),
+                          Expanded(
+                            child:
+                                Icon(Icons.keyboard_double_arrow_right_rounded),
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: Text('End'),
+                            ),
+                          ),
+                        ],
                       ),
-                      Textfield(controller: _controller),
-                    ],
-                  )),
+                    ),
+                    Textfield(controller: _controller),
+                  ],
+                ),
+              ),
 
               // ANCHOR text field clear button
               Align(
@@ -109,15 +119,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextButton.styleFrom(),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
 
               // ANCHOR toggleButtons
               CustomToggle(list: isSelected),
               const SizedBox(height: 30),
               // ANCHOR run button
               ElevatedButton(
-                // _controller.text.length < 2 => alter
-                // countOccurrencesUsingWhereMethod < 1 => alter
+                style: ElevatedButton.styleFrom(primary: backgroundColor),
                 onPressed: () async {
                   // textfield가 비었거나 한글자만 있을 때 or toggle button 이 하나도 선택되지 않았을 때
                   _controller.text.length < 2 ||
@@ -148,7 +157,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         };
                 },
-                child: const Text('번역하기'),
+                child: const Text(
+                  '번역하기',
+                  style: TextStyle(color: Colors.white),
+                ),
               )
             ],
           ),
