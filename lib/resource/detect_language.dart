@@ -1,1 +1,0 @@
-// this part is make detect language methods (papago, kakao : google is auto detect)

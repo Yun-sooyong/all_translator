@@ -6,8 +6,6 @@ import 'package:http/http.dart' as http;
 /// TODO target 언어를 받을 변수 생성, mapping
 /// TODO try catch 사용
 
-String res = '';
-
 // ANCHOR Google
 Future<String> getGoogleTranslation(var text, var target) async {
   var _curl = 'https://translation.googleapis.com/language/translate/v2';
