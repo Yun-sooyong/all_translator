@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 
 const String _curl = 'https://dapi.kakao.com/v2/translation/translate';
-const String _apiKey = 'KakaoAK bc171a62a7f80e662f8c4a2dd82136e6';
+const String _apiKey = '';
 const String _contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 
 Future<String> getKakaoTranslation({var text, var target, var source}) async {
