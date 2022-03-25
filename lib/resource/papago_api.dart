@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 
-const String _cilentId = 'kXhRuAdMvx3cFgUPnyyW';
-const String _cilentSecret = 'BdNwvhe92K';
+const String _cilentId = '';
+const String _cilentSecret = '';
 const String _contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 
 // Translator
