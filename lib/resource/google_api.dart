@@ -5,7 +5,7 @@ import 'api_keys.dart';
 
 Future<String> getGoogleTranslation(var text, var target) async {
   var _curl = 'https://translation.googleapis.com/language/translate/v2';
-  //const googleApiKey = googleApiKey;
+  const _googleApiKey = googleApiKey;
 
   //var source = 'kr'; // start language : default = kr
   //var target = target; // translation result language
@@ -14,7 +14,7 @@ Future<String> getGoogleTranslation(var text, var target) async {
 
   var response = await http.post(
     Uri.parse(
-        '$_curl?target=$target&key=$googleApiKey&q=$text'), // json data get response : success code = 200
+        '$_curl?target=$target&key=$_googleApiKey&q=$text'), // json data get response : success code = 200
   );
 
   if (response.statusCode == 200) {
