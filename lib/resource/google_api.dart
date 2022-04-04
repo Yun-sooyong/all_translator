@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'api_keys.dart';
 
 Future<String> getGoogleTranslation(var text, var target) async {
   var _curl = 'https://translation.googleapis.com/language/translate/v2';
-  const googleApiKey = 'AIzaSyChjWY1iNZbam8tPLEloVFs8umb-tMViqo';
+  //const googleApiKey = googleApiKey;
 
   //var source = 'kr'; // start language : default = kr
   //var target = target; // translation result language
