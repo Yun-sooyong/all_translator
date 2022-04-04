@@ -50,6 +50,8 @@ analysis_benchmark.json
 .flutter-plugins
 .flutter-plugins-dependencies
 **/generated_plugin_registrant.dart
+**/api_keys.dart
+!/lib/resource/api_keys.dart
 .packages
 .pub-cache/
 .pub/

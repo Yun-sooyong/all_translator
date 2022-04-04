@@ -130,8 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () async {
                   // textfield가 비었거나 한글자만 있을 때 or toggle button 이 하나도 선택되지 않았을 때
                   _controller.text.length < 2 ||
-                          countOccurrencesUsingWhereMethod(isSelected, true) ==
-                              0
+                          //countOccurrencesUsingWhereMethod(isSelected, true) == 0
+                          isSelected.where((element) => element == true).isEmpty
                       ? showValueDialog(context)
                       : {
                           gText = await getGoogleTranslation(
