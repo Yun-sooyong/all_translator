@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:async';
-import 'package:all_translator/resource/api_keys.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart' as http;
 
-const String _cilentId = papagoApiKey;
-const String _cilentSecret = papagoSecret;
+String _cilentId = FlutterConfig.get('PAPAGO_API_KEY');
+String _cilentSecret = FlutterConfig.get('PAPAGO_SECRET_KEY');
 const String _contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 
 // Translator

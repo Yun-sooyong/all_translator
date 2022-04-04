@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart' as http;
-import 'api_keys.dart';
 
 Future<String> getGoogleTranslation(var text, var target) async {
   var _curl = 'https://translation.googleapis.com/language/translate/v2';
-  const _googleApiKey = googleApiKey;
+  var _apiKey = FlutterConfig.get('GOOGLE_API_KEY');
 
   //var source = 'kr'; // start language : default = kr
   //var target = target; // translation result language
@@ -14,7 +14,7 @@ Future<String> getGoogleTranslation(var text, var target) async {
 
   var response = await http.post(
     Uri.parse(
-        '$_curl?target=$target&key=$_googleApiKey&q=$text'), // json data get response : success code = 200
+        '$_curl?target=$target&key=$_apiKey&q=$text'), // json data get response : success code = 200
   );
 
   if (response.statusCode == 200) {

@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:async';
-import 'package:all_translator/resource/api_keys.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:http/http.dart' as http;
 
 const String _curl = 'https://dapi.kakao.com/v2/translation/translate';
-const String _apiKey = kakaoApiKey;
+String _apiKey = FlutterConfig.get('KAKAO_API_KEY');
 const String _contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 
 Future<String> getKakaoTranslation({var text, var target, var source}) async {
@@ -35,6 +35,7 @@ Future<String> getKakaoTranslation({var text, var target, var source}) async {
   }
 }
 
+// 언어 감지
 Future<void> kDetectLang(String text) async {
   String _curl = "https://dapi.kakao.com/v3/translation/language/detect";
 

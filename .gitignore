@@ -44,6 +44,9 @@ analysis_benchmark.json
 # packages file containing multi-root paths
 .packages.generated
 
+# API_KEYS
+.env
+
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
